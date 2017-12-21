@@ -56,7 +56,8 @@ const data = [
   },
   {
     "BTC": 78,
-    "ETH": 113  },
+    "ETH": 113  
+  },
   {
     "BTC": 123,
     "ETH": 24
@@ -69,10 +70,20 @@ class Graph extends Component {
 		this.state ={};
 	}
 
+	getRequest() {
+	// let url = `https://api.coindesk.com/v1/bpi/historical/close.json?start=${this.startDate}}&end=${this.endDate}`
+	  let url = 'https://api.coindesk.com/v1/bpi/historical/close.json?start=2010-09-01&end=2017-12-19';
+	  fetch(url, {'headers': {'Accept': 'application/json'}})
+	  .then(res  => res.json())
+	  .then(res => console.log(Object.keys(res.bpi).length, Object.keys(res.bpi)[10], Object.values(res.bpi)[10]))
+	  .catch(err => console.log('fetch error:', err))
+	}
+
 	render(){
 		return (
 			<div>
 			<h1>cryptoTears</h1>
+			<button onClick={() => this.getRequest()}>click</button>
 				<Stream
 				      data={data}
 				      keys={['BTC', 'ETH']}
@@ -97,6 +108,7 @@ class Graph extends Component {
 				      fillOpacity={0.85}
 				      borderColor="#000"
 				      animate={true}
+				      enableGridY={true}
 				      motionStiffness={90}
 				      motionDamping={15}
 				  />
@@ -106,14 +118,3 @@ class Graph extends Component {
 }
 
 export default Graph
-
-// getRequest() {
-// // let url = `https://api.coindesk.com/v1/bpi/historical/close.json?start=${this.startDate}}&end=${this.endDate}`
-//   let url = 'https://api.coindesk.com/v1/bpi/historical/close.json?start=2010-09-01&end=2017-12-19';
-//   fetch(url, {'headers': {'Accept': 'application/json'}})
-//   .then(res  => res.json())
-//   .then(res => console.log(Object.keys(res.bpi).length, Object.keys(res.bpi)[10], Object.values(res.bpi)[10]))
-//   .catch(err => console.log('fetch error:', err))
-// }
-
-
