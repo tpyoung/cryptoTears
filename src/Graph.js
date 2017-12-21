@@ -96,40 +96,6 @@ class Graph extends Component {
 				      colors="set3"
 				      fillOpacity={0.85}
 				      borderColor="#000"
-				      defs={[
-				          {
-				              "id": "dots",
-				              "type": "patternDots",
-				              "background": "inherit",
-				              "color": "#000000",
-				              "size": 4,
-				              "padding": 2,
-				              "stagger": true
-				          },
-				          {
-				              "id": "squares",
-				              "type": "patternSquares",
-				              "background": "inherit",
-				              "color": "#e4c912",
-				              "size": 6,
-				              "padding": 2,
-				              "stagger": true
-				          }
-				      ]}
-				      fill={[
-				          {
-				              "match": {
-				                  "id": "Paul"
-				              },
-				              "id": "dots"
-				          },
-				          {
-				              "match": {
-				                  "id": "Marcel"
-				              },
-				              "id": "squares"
-				          }
-				      ]}
 				      animate={true}
 				      motionStiffness={90}
 				      motionDamping={15}
