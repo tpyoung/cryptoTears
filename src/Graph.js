@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import { Stream } from 'nivo'
 
 const data = [
@@ -13,23 +12,28 @@ const data = [
   },
   {
     "BTC": 10,
-    "ETH": 29  },
+    "ETH": 29  
+  },
   {
     "BTC": 169,
     "ETH": 18
   },
   {
     "BTC": 130,
-    "ETH": 173  },
+    "ETH": 173  
+  },
   {
     "BTC": 160,
-    "ETH": 189  },
+    "ETH": 189  
+  },
   {
     "BTC": 149,
-    "ETH": 14  },
+    "ETH": 14  
+  },
   {
     "BTC": 171,
-    "ETH": 171  },
+    "ETH": 171  
+  },
   {
     "BTC": 114,
     "ETH": 179
