@@ -21,12 +21,14 @@ class Graph extends Component {
 		let values = {};
 		let btcArray = [];
 		let dateArray = [];
+		let arrayLength = '';
 		let url = `https://api.coindesk.com/v1/bpi/historical/close.json?start=${this.state.startDate}&end=${this.state.endDate}`;
 		fetch(url, { headers: { Accept: "application/json" } })
 			.then(res => res.json())
 			.then(res => {
-				values = Object.values(res.bpi);
 				dates = Object.keys(res.bpi);
+				values = Object.values(res.bpi);
+				arrayLength = Object.values(res.bpi).length;
 			})
 			.then(res =>
 				values.forEach(value => {
@@ -41,7 +43,8 @@ class Graph extends Component {
 			.then(res =>
 				this.setState({
 					btcArray,
-					dateArray
+					dateArray,
+					arrayLength
 				})
 			)
 			.catch(err => console.log("fetch error:", err));
@@ -72,6 +75,10 @@ class Graph extends Component {
 					motionStiffness={90}
 					motionDamping={15}
 				/>
+				<div>
+					<input type="range" min="0" max={this.state.arrayLength} class="slider" id="myRange" />
+					<input type="range" min="0" max="100000" class="slider" id="myRange" />
+				</div>
 			</div>
 		);
 	}
