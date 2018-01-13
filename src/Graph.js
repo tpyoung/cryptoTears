@@ -49,7 +49,8 @@ class Graph extends Component {
 					btcArray,
 					dateArray,
 					arrayLength,
-					staticBTCArray: btcArray
+					staticBTCArray: btcArray,
+					staticDateArray: dateArray
 				})
 			)
 			.catch(err => console.log("fetch error:", err));
@@ -58,19 +59,19 @@ class Graph extends Component {
 
 	updateValue (dateValue) {
 		let startingIndex = dateValue.target.value;
-		let newBTCArray = this.state.staticBTCArray.slice(startingIndex - 2, this.state.arrayLength)
-		this.setState({btcArray: newBTCArray})
+		let newBTCArray = this.state.staticBTCArray.slice(startingIndex - 2, this.state.arrayLength);
+		let investDate = this.state.staticDateArray[startingIndex];
+		this.setState({btcArray: newBTCArray, investDate})
 	}
 
 	updateInvest(newValue){
 		let investAmount = newValue.target.value;
 		let coinAmount = (investAmount/Object.values(this.state.btcArray[0])).toFixed(5);
 		let coinValue = (coinAmount * Object.values(this.state.btcArray[this.state.btcArray.length - 1])).toFixed(2)
-		console.log(investAmount, coinAmount, coinValue);
 		this.setState({
-			investAmount,
+			coinValue,
 			coinAmount,
-			coinValue
+			investAmount
 		})
 	}
 
@@ -85,7 +86,7 @@ class Graph extends Component {
 				keys={["BTC"]}
 				enableGridX={false}
 				width={screen.width}
-				height={400}
+				height={600}
 				margin={{
 					top: 50,
 					right: 20,
@@ -122,8 +123,8 @@ class Graph extends Component {
 						onChange={this.updateInvest.bind(this)} 
 					/>
 					<div>
-						<p>If you had invested</p> {this.state.investAmount} <p>on DATE you would have gotten</p> 
-						{this.state.coinAmount} <p>bitcoin, now valued at</p> {this.state.coinValue}
+						<p>If you had invested {this.state.investAmount} on {this.state.investDate} you would have gotten 
+						{this.state.coinAmount} bitcoin, now valued at {this.state.coinValue} </p>
 					</div>
 				</div>
 			</div>
