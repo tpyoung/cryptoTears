@@ -15,13 +15,7 @@ updateInvest(newValue){
 render(){
 	return (
 		<div>
-		<input 
-			type="range"
-			min="10" 
-			step="100"
-			max="10000"
-			onChange={this.updateInvest.bind(this)} 
-		/>
+		
 	</div>
 	)
 }

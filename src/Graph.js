@@ -62,6 +62,18 @@ class Graph extends Component {
 		this.setState({btcArray: newBTCArray})
 	}
 
+	updateInvest(newValue){
+		let investAmount = newValue.target.value;
+		let coinAmount = (investAmount/Object.values(this.state.btcArray[0])).toFixed(5);
+		let coinValue = (coinAmount * Object.values(this.state.btcArray[this.state.btcArray.length - 1])).toFixed(2)
+		console.log(investAmount, coinAmount, coinValue);
+		this.setState({
+			investAmount,
+			coinAmount,
+			coinValue
+		})
+	}
+
 	render() {
 		let graphView = this.state.isLoading ? (
 			<div>
@@ -102,7 +114,17 @@ class Graph extends Component {
 						max={this.state.arrayLength} 
 						onChange={this.updateValue.bind(this)} 
 					/>
-				<Investments />
+					<input 
+						type="range"
+						min="10" 
+						step="100"
+						max="10000"
+						onChange={this.updateInvest.bind(this)} 
+					/>
+					<div>
+						<p>If you had invested</p> {this.state.investAmount} <p>on DATE you would have gotten</p> 
+						{this.state.coinAmount} <p>bitcoin, now valued at</p> {this.state.coinValue}
+					</div>
 				</div>
 			</div>
 		);
